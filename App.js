@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Text } from "react-native";
+import React from "react";
 
+import ImageOption from "./src/components/ImageOption/index";
+import icon from "./assets/icon.png";
+import styles from "./App.styles";
+import question from "./assets/data/oneQuestionWithOption";
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={styles.root}>
+      <Text style={styles.title}>{question.question}</Text>
+
+      <View style={styles.optionsContainer}>
+        {question.options.map((option) => (
+          <ImageOption
+            key={option.id}
+            image={option.image}
+            text={option.text}
+          />
+        ))}
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
